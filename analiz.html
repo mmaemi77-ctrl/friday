@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Сайт для Friday Studio: разбор</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: спокойный разбор в цветах Friday. Узкая колонка текста, карточки конкурентов сеткой, тёмный блок со ссылкой на набросок. */
+:root{
+  --bg:#F2EFEB;--surface:#FCFBF9;--ink:#24201D;--muted:#776C64;--line:#E0D8D0;
+  --accent:#6B4A3E;--soft:#E7DED4;--on-accent:#FCFBF9;--gold:#A88A6A;--good:#4D7A5C;
+  --logo:"Cormorant Garamond",Georgia,serif;
+  --display:"Jost","Futura","Century Gothic",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1A1715;--surface:#24201D;--ink:#F1EBE4;--muted:#B3A79D;--line:#3A332E;
+  --accent:#C9A891;--soft:#332B26;--on-accent:#1A1715;--gold:#C8AC8C;--good:#8DBE9C;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1A1715;--surface:#24201D;--ink:#F1EBE4;--muted:#B3A79D;--line:#3A332E;
+  --accent:#C9A891;--soft:#332B26;--on-accent:#1A1715;--gold:#C8AC8C;--good:#8DBE9C;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--display);font-size:17px;line-height:1.65;margin:0;padding-inline:20px}
+.wrap{max-width:920px;margin:0 auto}
+h1,h2,h3{font-weight:300;margin:0;text-wrap:balance;line-height:1.15}
+h2{font-size:clamp(24px,3.6vw,32px);text-transform:uppercase;letter-spacing:.04em}
+h3{font-size:20px;font-weight:400}
+p{margin:0}
+a{color:var(--accent)}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500}
+section{padding-block:44px;border-top:1px solid var(--line);display:grid;gap:20px}
+.muted{color:var(--muted)}
+header.top{padding-block:40px 48px;display:grid;gap:18px}
+.logo{display:grid;justify-items:start;line-height:1}
+.logo b{font-family:var(--logo);font-weight:400;font-size:30px;letter-spacing:.14em}
+.logo small{font-family:var(--logo);font-size:12px;letter-spacing:.24em;color:var(--muted);margin-top:4px}
+header.top h1{font-size:clamp(32px,5.6vw,54px);text-transform:uppercase;letter-spacing:.02em;margin-top:12px}
+header.top h1 em{font-style:normal;color:var(--accent)}
+.key{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.key li{background:var(--surface);border-radius:18px;padding:16px 20px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:baseline}
+.key li b{font-family:var(--logo);font-size:24px;font-weight:500;color:var(--gold);line-height:1}
+.list{margin:0;padding-left:20px;display:grid;gap:8px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.box{background:var(--surface);border-radius:20px;padding:20px 22px;display:grid;gap:8px;align-content:start;min-width:0}
+.box h3{font-size:18px}
+.box p,.box li{font-size:15px;color:var(--muted)}
+.comp{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.comp .box a{font-size:14px;word-break:break-all}
+.comp dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;font-size:14px}
+.comp dt{color:var(--muted)}
+.comp dd{margin:0}
+.tag{display:inline-block;font-size:12px;border-radius:999px;padding:3px 10px;background:var(--soft);color:var(--ink)}
+.cta{background:var(--ink);color:var(--bg);border-radius:28px;padding:30px clamp(20px,5vw,40px);display:grid;gap:16px}
+.cta .eyebrow{color:var(--gold)}
+.cta .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.cta .grid div{border:1px solid color-mix(in srgb,var(--bg) 20%,transparent);border-radius:16px;padding:14px 16px;font-size:15px}
+.cta .grid b{display:block;font-weight:500}
+.cta .grid span{color:color-mix(in srgb,var(--bg) 65%,transparent);font-size:14px}
+.btn{display:inline-flex;justify-self:start;align-items:center;gap:8px;background:var(--gold);color:var(--ink);border-radius:999px;padding:14px 26px;font-weight:500;text-decoration:none}
+.btn:hover{opacity:.9}
+.qs{counter-reset:q;list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.qs li{counter-increment:q;display:grid;grid-template-columns:32px minmax(0,1fr);gap:10px}
+.qs li::before{content:counter(q);font-family:var(--logo);font-size:22px;color:var(--gold);line-height:1.2}
+footer{border-top:1px solid var(--line);padding-block:26px 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);align-items:center}
+footer b{font-family:var(--logo);font-weight:500;letter-spacing:.1em;font-size:16px;color:var(--ink)}
+.tg{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--soft);color:var(--accent);vertical-align:middle;margin-left:8px}
+.tg svg{width:16px;height:16px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="top">
+    <div class="logo"><b>FRIDAY</b><small>care &amp; beauty</small></div>
+    <h1>Сайт для Friday Studio: <em>рынок, конкуренты и набросок</em></h1>
+    <p class="muted">Симферополь · 9 октября 2026</p>
+  </header>
+
+  <section>
+    <div class="eyebrow">Главное</div>
+    <ul class="key">
+      <li><b>1</b><span>У студии отличная репутация: 5,0 на Яндекс Картах, 273 отзыва и «Хорошее место» Яндекса 2025 и 2026.</span></li>
+      <li><b>2</b><span>Всё, что убеждает новую гостью (прайс, команда, до/после, «почему нам доверяют»), сейчас живёт в сторис. Из поиска до этого не добраться.</span></li>
+      <li><b>3</b><span>Все пять студий-конкурентов в Симферополе, которые мы открыли, уже показывают цены, комплексы и онлайн-запись на своих сайтах.</span></li>
+      <li><b>4</b><span>На их сайтах мы не нашли живой команды с медицинским образованием и врача-дерматолога. Это ваше главное отличие.</span></li>
+      <li><b>5</b><span>Сайт соберёт всё в одном месте и будет вести прямо в ваш YCLIENTS. Осень и зима как раз сезон лазера.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="eyebrow">Что у вас уже сильное</div>
+    <div class="cols">
+      <div class="box"><h3>Команда с медобразованием</h3><p>«Ответственные специалисты с медицинским образованием, девиз которых „НЕ НАВРЕДИТЬ“». Врач-косметолог, дерматовенеролог Анжела Руслановна, Маргарита с 26 годами на скорой помощи, Нарина с опытом более 7 лет.</p></div>
+      <div class="box"><h3>Внимание к каждой гостье</h3><p>Вы ведёте карты, «куда записываем все текущие параметры и особенности каждого». Гости пишут про чашечку кофе, чая и шоколадку после процедуры: «не студия, а сказка».</p></div>
+      <div class="box"><h3>Понятный прайс</h3><p>Цены по зонам и выгодные комплексы от S до XXL и для лазера, и для сахара с воском. Бесплатная консультация косметолога.</p></div>
+      <div class="box"><h3>Готовые поводы прийти</h3><p>−20% для новых гостей, подарочные сертификаты, косметика Angiopharm в наличии, обучение косметологии.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Что сейчас мешает получать заявки</div>
+    <ul class="list">
+      <li>Прайс, команда и до/после есть только в закреплённых сторис. Человек, который ищет «лазерная эпиляция Симферополь», их не увидит.</li>
+      <li>Ваш сайт сделан на стандартном конструкторе Яндекса: там адрес и телефон, а каталог услуг и цены пустые.</li>
+      <li>Ссылка в профиле ведёт сразу в форму записи. Новой гостье сначала хочется понять, кто её примет и сколько это стоит.</li>
+      <li>Когда пишут в Telegram, первым отвечает бот с просьбой прислать номер. Часть людей на этом шаге уходит.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="eyebrow">Кто ещё работает в нише</div>
+    <p class="muted">Студии лазерной эпиляции Симферополя, у которых есть свой сайт. Смотрели их страницы 9 октября 2026.</p>
+    <div class="comp">
+      <div class="box"><h3>Laser Love</h3><a href="https://laserlove.ru/simf" target="_blank" rel="noopener">laserlove.ru/simf</a>
+        <dl><dt>Первый экран</dt><dd>«Laser Love: ваша уверенность без компромиссов»</dd><dt>Цены</dt><dd>есть, по зонам</dd><dt>Запись</dt><dd>онлайн, YCLIENTS</dd><dt>Фишки</dt><dd>−30% на первый сеанс, абонементы −20% и −25%, комбо-пакеты</dd></dl></div>
+      <div class="box"><h3>Dr.Laser</h3><a href="https://www.doc-laser.ru/simferopol" target="_blank" rel="noopener">doc-laser.ru/simferopol</a>
+        <dl><dt>Первый экран</dt><dd>«Лазерная эпиляция в Симферополе»</dd><dt>Цены</dt><dd>есть, по зонам и комплексам</dd><dt>Запись</dt><dd>форма и звонок</dd><dt>Фишки</dt><dd>клубная карта, абонементы и сертификаты на сайте, квиз, колесо с купонами</dd></dl></div>
+      <div class="box"><h3>Laser Pro</h3><a href="https://laser-simferopol.ru/kompleksy/" target="_blank" rel="noopener">laser-simferopol.ru</a>
+        <dl><dt>Первый экран</dt><dd>«Комплексы лазерной эпиляции в Симферополе»</dd><dt>Цены</dt><dd>есть, комплексы и абонементы</dd><dt>Запись</dt><dd>онлайн</dd><dt>Фишки</dt><dd>первая процедура и консультация бесплатно, рассрочка на абонемент</dd></dl></div>
+      <div class="box"><h3>EpiLazer</h3><a href="https://epilazer.top/" target="_blank" rel="noopener">epilazer.top</a>
+        <dl><dt>Первый экран</dt><dd>«Удаление волос методом лазерной эпиляции в Симферополе»</dd><dt>Цены</dt><dd>есть, разово и за 6 процедур</dd><dt>Запись</dt><dd>онлайн, YCLIENTS, мессенджеры</dd><dt>Фишки</dt><dd>отзывы с Яндекс Карт на сайте, акция «Всё тело», абонемент можно передать</dd></dl></div>
+      <div class="box"><h3>Laser&amp;Beauty</h3><a href="https://laserandbeauty.ru/laser-simferopol/" target="_blank" rel="noopener">laserandbeauty.ru</a>
+        <dl><dt>Первый экран</dt><dd>«Лазерная эпиляция с результатом»</dd><dt>Цены</dt><dd>есть, по зонам</dd><dt>Запись</dt><dd>форма с обратным звонком, мессенджеры</dd><dt>Фишки</dt><dd>первая процедура бесплатно, абонементы, кэшбек, акция «Подружки»</dd></dl></div>
+    </div>
+    <div class="cols">
+      <div class="box"><h3>Что стало нормой</h3><ul class="list"><li>Цены по зонам прямо на сайте</li><li>Комплексы и абонементы</li><li>Онлайн-запись в один клик</li><li>Предложение на первый визит</li></ul></div>
+      <div class="box"><h3>Чего мы не нашли у других</h3><ul class="list"><li>Живой команды с лицами, стажем и медобразованием</li><li>Врача-дерматолога в студии</li><li>Лазера, сахара и косметологии в одном месте с общим прайсом</li><li>Дословных отзывов о конкретных мастерах</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Что должен делать ваш сайт</div>
+    <ul class="list">
+      <li>Находиться в поиске по запросам «лазерная эпиляция Симферополь» и «чистка лица Симферополь».</li>
+      <li>Сразу показывать цены по зонам и комплексам, чтобы гостья могла посчитать визит сама.</li>
+      <li>Знакомить с командой до визита: кто примет, какой опыт, какое образование.</li>
+      <li>Вести в ваш YCLIENTS в два касания, без переписки с ботом.</li>
+      <li>Продавать подарочные сертификаты к праздникам.</li>
+      <li>Напоминать про −20% для новых гостей.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="cta">
+      <div class="eyebrow">Что уже есть в наброске</div>
+      <h2>Набросок сайта Friday</h2>
+      <div class="grid">
+        <div><b>Первый экран</b><span>рейтинг 5,0, −20% новым гостям, адрес и часы</span></div>
+        <div><b>Прайс</b><span>лазер, сахар и воск, косметология, комплексы S–XXL</span></div>
+        <div><b>Команда</b><span>Нарина, Маргарита, Анжела Руслановна и Мавиле</span></div>
+        <div><b>До и после</b><span>чистки и пилинги с подписями</span></div>
+        <div><b>Почему нам доверяют</b><span>In-Motion, медподход, атмосфера</span></div>
+        <div><b>Запись в 4 шага</b><span>с подсчётом суммы и скидки, дальше в YCLIENTS</span></div>
+        <div><b>Сертификат</b><span>выбор суммы и имени получателя</span></div>
+        <div><b>Отзывы и контакты</b><span>дословно с Яндекс Карт, часы «открыто сейчас»</span></div>
+      </div>
+      <a class="btn" href="./" target="_blank" rel="noopener">Открыть набросок →</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Что можно предложить вашим гостям</div>
+    <div class="cols">
+      <div class="box"><h3>Курс лазера со скидкой</h3><p>Абонемент на 6 процедур по любой зоне или комплексу. Конкуренты уже так делают, а у вас курс и поддержка описаны прямо в отзывах.</p></div>
+      <div class="box"><h3>Сертификат к Новому году</h3><p>Отдельный блок на сайте с декабря: «Что подарить маме, сестре, подруге».</p></div>
+      <div class="box"><h3>Приведи подругу</h3><p>Подруге −20% по вашей акции для новых гостей, а вам приятный бонус к следующему визиту.</p></div>
+      <div class="box"><h3>Уход после чистки</h3><p>Набор Angiopharm для дома к чистке лица, раз косметика уже есть в наличии.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Что нужно уточнить</div>
+    <ol class="qs">
+      <li>Как правильно написать адрес: ТЦ «Гагаринский» и офис 311 на Набережной, 75С это одно и то же место?</li>
+      <li>Есть ли у вас свой домен или будем подбирать новый?</li>
+      <li>Сколько длится каждая процедура? Это поможет записи сразу ставить нужное время.</li>
+      <li>На какие суммы бывают сертификаты?</li>
+      <li>Работает ли Мавиле с записью, или звонки и сообщения принимает администратор?</li>
+      <li>Есть ли фото интерьера и команды, которые можно поставить на сайт?</li>
+      <li>На какое ИП или юрлицо оформлять политику конфиденциальности?</li>
+    </ol>
+  </section>
+
+  <footer>
+    <span>Подготовила Анастасия Абдуллаева · <b>FOR.MI</b> designed &amp; developed by ABN<a class="tg" href="https://t.me/abanev_dev" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.4 4.3 2.9 11.5c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.5c.2.6.4.8.9.8s.6-.2.9-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8L22.8 5.8c.3-1.3-.4-1.9-1.4-1.5zM8.6 14.1l9.6-6c.5-.3.9-.1.5.2l-7.8 7.1-.3 3.3-2-4.6z"/></svg></a></span>
+  </footer>
+</div>
+
+</body>
+</html>
